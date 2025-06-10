@@ -1,0 +1,58 @@
+##########  ~/.gitconfig  ##########
+
+# ── Identity ───────────────────────────────────────────────────────────
+[user]
+	name  = Steve Dogiakos
+	email = steve@dogiakos.com
+
+# ── Core behaviour ─────────────────────────────────────────────────────
+[init]                   # new repos start on “main”
+	defaultBranch = main
+
+[core]
+	# Editor:  nano in a pinch (server shells), VS Code locally (see tips below)
+	editor        = nano
+	autocrlf      = input      # keep Unix line-endings
+	fileMode      = false      # ignore 755/644 permission flips
+	excludesFile  = ~/.gitignore_global
+	pager         = less -F -X # fast pager; quits if output fits one screen
+
+[color]
+	ui = auto
+
+# ── Workflow defaults ─────────────────────────────────────────────────
+[pull]
+	rebase = false             # classic merge pulls (set true if you later prefer linear history)
+
+[push]
+	default = current          # `git push` pushes only your checked-out branch
+
+# ── Shortcuts / aliases ────────────────────────────────────────────────
+[alias]
+	st   = status -sb
+	co   = checkout
+	br   = branch
+	cm   = commit
+	lg   = log --graph --abbrev-commit --decorate --all --date=relative
+	aa   = add -A
+	amend = commit --amend --no-edit
+	undo = reset --soft HEAD~1
+	type = cat-file -t
+	dump = cat-file -p
+	wip  = "!f() { git add -A && git commit -m \"WIP\"; }; f"
+	sync = "!git fetch --all --prune && git pull --rebase --autostash && git submodule update --init --recursive"
+
+# ── Remote shorthands ─────────────────────────────────────────────────-
+#  Clone or push with “gh:repo” or “gd:repo”
+[url "git@github.com:snachodog/"]
+	insteadOf = gh:
+
+[url "git@git.dogiakos.com:steve/"]
+	insteadOf = gd:
+
+# ── Credential & transport ────────────────────────────────────────────
+#  Using SSH keys on both hosts, so nothing further is needed here.
+#  Ensure the public key from each server is added to:
+#    • GitHub  ➜  https://github.com/settings/keys
+#    • Gitea   ➜  https://git.dogiakos.com/user/settings/keys
+#####################################
