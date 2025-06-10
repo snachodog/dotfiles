@@ -1,0 +1,28 @@
+#  ~/.gitignore_global  (starter – adjust to taste)
+
+# macOS / Windows
+.DS_Store
+Thumbs.db
+
+# Editor folders
+.vscode/
+.idea/
+*.swp
+
+# Node / front-end builds
+node_modules/
+dist/
+coverage/
+
+# Composer / PHP
+vendor/
+
+# Env & secret stuff
+.env
+*.log
+*.sqlite
+*.sql
+
+# Images & zips you generated locally
+*.zip
+*.png~
