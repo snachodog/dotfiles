@@ -1,0 +1,10 @@
+<IfModule mod_rewrite.c>
+    # Rename to .htaccess
+    # Attempt to load files from production if
+    # they're not in our local version
+    # from [r/WordPress](https://www.reddit.com/r/Wordpress/comments/6q2yuj/wordpress_git_whats_your_workflow/dn5ajhu/) [u/bangtothebeast](https://www.reddit.com/user/bangtothebeat)
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule content/uploads/(.*) \
+    https://mylivesite.org/content/uploads/$1 [NC,L]
+</IfModule>
